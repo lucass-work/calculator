@@ -100,7 +100,15 @@ CE.onclick = CE_num;
 CS.onclick = CS_num;
 //key listeners
 document.addEventListener("keydown",(event) => {
-    if(["1","2","3","4","5","6","7","8","9"].includes(event.key)){
+    if(["1","2","3","4","5","6","7","8","9","0"].includes(event.key)){
         push(event.key);
+        return;
+    }
+    switch(event.key){
+        case "+": add_num(); break;
+        case "-": sub_num(); break;
+        case "*": mult_num(); break;
+        case "=": equals(); break;
+        case "Backspace": C_num(); break;
     }
 });
