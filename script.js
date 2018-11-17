@@ -16,9 +16,12 @@ let add = document.getElementById("+");
 let sub = document.getElementById("-");
 let mult = document.getElementById("*");
 let equal = document.getElementById("=");
+let sqrt = document.getElementById("sqrt");
+let exp = document.getElementById("exp");
 let C = document.getElementById("C");
 let CE = document.getElementById("CE");
 let CS = document.getElementById("CS");
+
 //setup the display
 let display_num = 0;
 let stored_num = 0;
@@ -49,6 +52,15 @@ function mult_num(){
     last_op = "*";
     store_display();
 }
+function exp_num(){
+    last_op = "^";
+    store_display();
+}
+function sqrt_num(){
+    display_num = Math.sqrt(display_num);
+    last_op = "sqrt";
+    update_display();
+}
 function C_num(){//clear the display
     display_num = 0;
     update_display();
@@ -68,6 +80,8 @@ function equals(){
         case "+": display_num += stored_num; break;
         case "-": display_num -= stored_num; break;
         case "*": display_num *= stored_num; break;
+        case "^": display_num = Math.pow(stored_num,display_num); break;
+        case "sqrt": sqrt_num(); break;
     }
     update_display();
 
@@ -94,6 +108,8 @@ nine.onclick = () => push("9");
 add.onclick = add_num;
 sub.onclick = sub_num;
 mult.onclick = mult_num;
+sqrt.onclick = sqrt_num;
+exp.onclick = exp_num;
 equal.onclick = equals;
 C.onclick = C_num;
 CE.onclick = CE_num;
@@ -110,5 +126,6 @@ document.addEventListener("keydown",(event) => {
         case "*": mult_num(); break;
         case "=": equals(); break;
         case "Backspace": C_num(); break;
+        case "^": exp_num(); break;
     }
 });
